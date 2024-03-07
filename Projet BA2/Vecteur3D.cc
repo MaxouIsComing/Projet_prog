@@ -1,4 +1,5 @@
 #include <vector>
+#include <array>
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -82,7 +83,7 @@ public :
 
 
 private :
-     array <double, 3> coord ;
+     array <double, 3> coord;
 };
 
 int main () {
