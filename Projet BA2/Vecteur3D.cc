@@ -1,8 +1,10 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <array>
+
 using namespace std;
-//coucou maximus
+
 
 class Vecteur3D {
 
