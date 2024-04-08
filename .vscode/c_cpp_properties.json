@@ -1,14 +1,22 @@
 {
   "configurations": [
     {
+<<<<<<< Updated upstream
       "name": "macos-clang-x64",
+=======
+      "name": "macos-clang-arm64",
+>>>>>>> Stashed changes
       "includePath": [
         "${workspaceFolder}/**"
       ],
       "compilerPath": "/usr/bin/clang",
       "cStandard": "${default}",
       "cppStandard": "${default}",
+<<<<<<< Updated upstream
       "intelliSenseMode": "macos-clang-x64",
+=======
+      "intelliSenseMode": "macos-clang-arm64",
+>>>>>>> Stashed changes
       "compilerArgs": [
         ""
       ]
