@@ -5,7 +5,7 @@
 using namespace std;
 
 int main () {
-
+//24
 // un vecteur en 3D :
 Vecteur3D vect1(1.0, 2.0, -0.1);
 // un autre vecteur en 3D 

@@ -4,24 +4,31 @@
 #include <array>
 #include "Vecteur3D.h"
 using namespace std;
-
-
-class Vecteur3D {
-
-public :
-
-    void set_coord(int pos, double new_coord) {
-        if ((pos >= 0) and (pos < 3)) {  coord[pos] = new_coord; }
-        else {  cout << "Coordonnée n'existe pas" << endl;  }
+//23
+//setteur pour les coordonnées
+void Vecteur3D::set_coord(int pos, double new_coord) {
+    coord[pos] = new_coord; 
      }
-
-    void affiche () const { cout << coord[0] << " " << coord[1] << " " << coord[2] << endl; }
-
-    bool compare (Vecteur3D vect) { 
-        const double epsilon = exp(-10);
-        for (size_t i(0); i < 3 ; ++i) {
-            if (abs(coord[i]- vect.coord[i])>epsilon) {return false;}    
-        }     
+    
+//getteur pour les coordonnées
+double Vecteur3D::get_coord(int numero) const {
+    return coord[numero];
+}
+// ==================================================================================================================================
+//surcharge d'affichage 
+std::ostream& operator<<(std::ostream& sortie, const Vecteur3D& vect) { 
+    return vect.affiche(sortie);
+}
+std :: ostream& Vecteur3D::affiche(std::ostream& sortie) const {
+    for (auto const& element : coord) { sortie << element << " " ; }
+    return sortie;
+}
+// ==================================================================================================================================
+//surcharge d'opérateur different ou egal
+bool Vecteur3D::operator!= (Vecteur3D vect) const { 
+    const double epsilon = exp(-10);
+    for (size_t i(0); i < 3 ; ++i) {
+        if (abs(coord[i]- vect.coord[i])>epsilon) {return false;}}     
         return true;
     }
 bool  Vecteur3D::operator==(Vecteur3D autre) const 
@@ -32,14 +39,6 @@ bool  Vecteur3D::operator==(Vecteur3D autre) const
     }
     return true;
   }
-// ==================================================================================================================================
-//constructeurs (matteo Exercice P4)
-Vecteur3D vect_nul(array<double,3> coord);
-Vecteur3D()=default;
-Vecteur3D (double x, double y, double z)
-:x(x), y(y), z(z)
-Vecteur
-
 // ==================================================================================================================================
 //surcharge d'opérateurs : addition, soustraction
 Vecteur3D Vecteur3D:: operator += (Vecteur3D autre)  {
@@ -108,6 +107,7 @@ Vecteur3D Vecteur3D::operator^(Vecteur3D autre)  {
 
 Vecteur3D Vecteur3D::operator~()  {
     Vecteur3D unitaire;
+    unitaire.coord = coord;
     double norme_vect = norme(unitaire);
     unitaire *= (1/norme_vect);
     return unitaire ;
@@ -122,7 +122,3 @@ double Vecteur3D:: norme2(Vecteur3D autre) const {
     }
    
 double Vecteur3D::norme (Vecteur3D autre) {return sqrt(norme2(autre));}
-
-private:
-double coord;
-};
