@@ -36,6 +36,7 @@ public :
     Vecteur3D operator-=(Vecteur3D autre) ;
     Vecteur3D operator-(Vecteur3D autre) ;
     Vecteur3D operator*=(double scalaire) ;
+    Vecteur3D operator*(double scalaire);
     Vecteur3D operator-();
     std::ostream& affiche(std::ostream& sortie) const;
     double operator*=(Vecteur3D autre) ;
@@ -54,7 +55,4 @@ public :
 //surcharge d'opérateur externe 
 
     std::ostream& operator<<(std::ostream& sortie,const Vecteur3D& vect);
-    Vecteur3D operator*(Vecteur3D const& v1, double x);
-    Vecteur3D operator*(double x, Vecteur3D const& v1);
-
-
+    Vecteur3D operator*(double scalaire, Vecteur3D autre);
