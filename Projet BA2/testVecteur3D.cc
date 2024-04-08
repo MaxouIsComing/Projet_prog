@@ -45,22 +45,33 @@ cout << "produit vectoriel de Vecteur 1 et Vecteur 2 : " << vect5 <<endl;
 
 Vecteur3D vect6 (2.0,1.0,-4.0);
 Vecteur3D vect7 (1,1,1);
-Vecteur3D vect8;
-Vecteur3D vect9;
+
 double scalaire = -2.0;
 
 vect6 = vect6*scalaire;
 vect7 = scalaire*vect7;
 
-cout << vect6 << endl;
-cout << vect7 << endl;
-// test multiplication addition
+cout << "Vecteur 6 :" << vect6 << endl;
+cout << "Vecteur 7 :"  << vect7 << endl;
+
+// test soustraction, addition
+Vecteur3D vect8;
+Vecteur3D vect9;
+
 vect8 = vect6 + vect7;
 vect9 = vect6 - vect7;
 
-cout << vect8 << endl;
-cout << vect9 << endl;
+cout << "Vecteur 8 :"  << vect8 << endl;
+cout << "Vecteur 9 :" << vect9 << endl;
 
+//test inverse et unitaire
+
+
+vect9 = (-vect9);
+vect8 = ~vect8;
+
+cout << "Vecteur 8 :"  << vect8 << endl;
+cout << "Vecteur 9 :" << vect9 << endl;
 
     return 0;
 

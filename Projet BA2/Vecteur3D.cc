@@ -108,7 +108,6 @@ Vecteur3D Vecteur3D::operator^(Vecteur3D autre)  {
 
 Vecteur3D Vecteur3D::operator~()  {
     Vecteur3D unitaire;
-    unitaire.coord = coord;
     double norme_vect = norme(unitaire);
     unitaire *= (1/norme_vect);
     return unitaire ;
