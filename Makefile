@@ -10,3 +10,5 @@ Vecteur3D.o: Vecteur3D.cc Vecteur3D.h
 testVecteur3D.o: testVecteur3D.cc Vecteur3D.h
 
 testVecteur3D: testVecteur3D.o Vecteur3D.o
+
+particule.o: particule.cc particule.h

@@ -7,6 +7,6 @@ using namespace std;
 int main(){
     
     
-    
+    Particule p;
     return 0;
 }
