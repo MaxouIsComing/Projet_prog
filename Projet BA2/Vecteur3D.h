@@ -1,14 +1,16 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <cmath>
 #include <iostream>
+
 
    //coucou maximus
 //suce pute
 class Vecteur3D {
 
 private :
-     std::array <double, 3> coord ;
+    std::array <double, 3> coord;
 
 public :
 
@@ -54,5 +56,5 @@ public :
 // ======================================================================================================================================
 //surcharge d'opérateur externe 
 
-    std::ostream& operator<<(std::ostream& sortie,const Vecteur3D& vect);
+    std::ostream& operator<<(std::ostream& sortie, Vecteur3D const& vect);
     Vecteur3D operator*(double scalaire, Vecteur3D autre);
