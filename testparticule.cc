@@ -2,7 +2,7 @@
 #include <array>
 #include <vector>
 #include "particule.h"
-#include "particule.cc"
+
 using namespace std;
 
 int main(){
