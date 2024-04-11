@@ -28,8 +28,8 @@ std :: ostream& Vecteur3D::affiche(std::ostream& sortie) const {
 bool Vecteur3D::operator!= (Vecteur3D vect) const { 
     const double epsilon = exp(-10);
     for (size_t i(0); i < 3 ; ++i) {
-        if (abs(coord[i]- vect.coord[i])>epsilon) {return false;}}     
-        return true;
+        if (abs(coord[i]- vect.coord[i])>epsilon) {return true;}}     
+        return false;
     }
 bool  Vecteur3D::operator==(Vecteur3D autre) const 
   {
@@ -71,12 +71,13 @@ Vecteur3D operator*(Vecteur3D const& v1, double x) {
     Vecteur3D res(v1);
     return res *= x;
 }
-Vecteur3D operator*(double x, Vecteur3D const& v1) { 
+ Vecteur3D operator*(double x, Vecteur3D const& v1) { 
     Vecteur3D res(v1);
     return res *=x;
 }
 Vecteur3D  Vecteur3D::operator- ()  {
     Vecteur3D oppose;
+    oppose.coord=coord;
     return oppose*=(-1);
     }
 // ==================================================================================================================================
@@ -87,9 +88,8 @@ double Vecteur3D::operator*=(Vecteur3D autre)  {
     for (size_t i (0); i < 3; ++i) { prod_scalaire += coord[i]*autre.coord[i];}
     return prod_scalaire;
     }
-double Vecteur3D::operator*(Vecteur3D autre)  {
-    Vecteur3D vect(*this);
-    return vect *= autre;
+double operator*(Vecteur3D  un, Vecteur3D const& autre)  {
+    return un *= autre;
 }
 
 Vecteur3D Vecteur3D::operator^=(Vecteur3D autre)  {

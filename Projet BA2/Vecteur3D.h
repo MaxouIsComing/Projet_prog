@@ -4,9 +4,6 @@
 #include <cmath>
 #include <iostream>
 
-
-   //coucou maximus
-//suce pute
 class Vecteur3D {
 
 private :
@@ -15,7 +12,7 @@ private :
 public :
 
 //constructeur de copie, par defaut, initialisation
-   Vecteur3D (double x = 0., double y = 0.,double z = 0.) {
+    Vecteur3D (double x = 0., double y = 0.,double z = 0.) {
         coord[0] = x;
         coord[1] = y;
         coord[2] = z;
@@ -38,12 +35,9 @@ public :
     Vecteur3D operator-=(Vecteur3D autre) ;
     Vecteur3D operator-(Vecteur3D autre) ;
     Vecteur3D operator*=(double scalaire) ;
-    Vecteur3D operator*(double scalaire);
     Vecteur3D operator-();
     std::ostream& affiche(std::ostream& sortie) const;
     double operator*=(Vecteur3D autre) ;
-    double operator*(Vecteur3D autre) ;
-    double prod_vect(Vecteur3D autre) ;
     Vecteur3D operator^=(Vecteur3D autre) ;
     Vecteur3D operator^(Vecteur3D autre) ;
     Vecteur3D operator~();
@@ -57,4 +51,6 @@ public :
 //surcharge d'opérateur externe 
 
     std::ostream& operator<<(std::ostream& sortie, Vecteur3D const& vect);
-    Vecteur3D operator*(double scalaire, Vecteur3D autre);
+    Vecteur3D operator*(double scalaire, Vecteur3D const& autre);
+    Vecteur3D operator*(Vecteur3D const& autre, double scalaire);
+    double operator*(Vecteur3D  un,Vecteur3D const& autre) ;

@@ -3,7 +3,7 @@ CC  = $(CXX)
 
 CXXFLAGS = -std=c++11  -pedantic -Wall         
 
-all: testVecteur3D Vecteur3D testparticule particule
+all: testVecteur3D   
 
 Vecteur3D.o: Vecteur3D.cc Vecteur3D.h
 

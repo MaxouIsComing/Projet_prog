@@ -66,8 +66,7 @@ cout << "Vecteur 9 :" << vect9 << endl;
 
 //test inverse et unitaire
 
-
-vect9 = (-vect9);
+vect9 = -vect9;
 vect8 = ~vect8;
 
 cout << "Vecteur 8 :"  << vect8 << endl;
