@@ -50,7 +50,7 @@ public :
 // ======================================================================================================================================
 //surcharge d'opérateur externe 
 
-    std::ostream& operator<<(std::ostream& sortie, Vecteur3D const& vect);
+    std::ostream& operator<<(std::ostream& sortie, Vecteur3D vect);
     Vecteur3D operator*(double scalaire, Vecteur3D const& autre);
     Vecteur3D operator*(Vecteur3D const& autre, double scalaire);
     double operator*(Vecteur3D  un,Vecteur3D const& autre) ;

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <array>
 #include <vector>
@@ -13,7 +14,7 @@ class Particule {
  // ======================================================================================================================================
     //constructeur par défaut/ copie/ initialisation
         Particule() : position(), vitesse(), masse(0.0) {}
-        Particule(const Vecteur3D& pos, const Vecteur3D& vit, double m) : position(pos), vitesse(vit), masse(m) {}
+        Particule( Vecteur3D pos, Vecteur3D vit, double m) : position(pos), vitesse(vit), masse(m) {}
         Particule(const Particule& autre) : position(autre.position), vitesse(autre.vitesse), masse(autre.masse) {}
 // ======================================================================================================================================
     // Getters

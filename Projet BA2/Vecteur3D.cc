@@ -16,7 +16,7 @@ double Vecteur3D::get_coord(int numero) const {
 }
 // ==================================================================================================================================
 //surcharge d'affichage 
-std::ostream& operator<<(std::ostream& sortie, const Vecteur3D& vect) { 
+std::ostream& operator<<(std::ostream& sortie, Vecteur3D vect) { 
     return vect.affiche(sortie);
 }
 std :: ostream& Vecteur3D::affiche(std::ostream& sortie) const {

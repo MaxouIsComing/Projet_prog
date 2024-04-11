@@ -20,12 +20,12 @@ using namespace std;
 
 // ======================================================================================================================================
  //surcharge affichage
-    std :: ostream& Particule::affiche(std::ostream& sortie) const {
-     cout << "pos : ";  
-    position.affiche(sortie);
-    cout << " ; \"v\" : ";
-    vitesse.affiche(sortie); 
-    cout << " ; \"m\" : " << masse; 
-    return sortie;
-        }   
-    std::ostream& operator<<(std::ostream& sortie, Particule const& part) {  return part.affiche(sortie); }
+    std::ostream& Particule::affiche(std::ostream& sortie) const {
+     sortie << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << std::endl; 
+     return sortie;
+    }   
+
+
+    std::ostream& operator<<(std::ostream& sortie, Particule const& part) 
+            { return part.affiche(sortie); }
+
