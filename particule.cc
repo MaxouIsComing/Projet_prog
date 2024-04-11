@@ -1,34 +1,29 @@
 #include <iostream>
-#include <array>
 #include <vector>
-#include <cmath>
 #include "particule.h"
+#include "Vecteur3D.h"
 using namespace std;
 
-//surchage externe affichage 
-std::ostream& operator<<(ostream& sortie, Particule const& part) {
+
+// ======================================================================================================================================
+    // Guetters
+    Vecteur3D Particule::getPosition() const { return position; }
+    Vecteur3D Particule::getVitesse() const { return vitesse; }
+    double Particule::getMasse() const  { return masse; }
+
+
+// ======================================================================================================================================
+    // Setters
+    void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
+    void Particule::setVitesse(const Vecteur3D& vit) { vitesse = vit; }
+    void Particule::setMasse(double m) { masse = m; }
+
+// ======================================================================================================================================
+ //surcharge affichage
+    std :: ostream& Particule::affiche(std::ostream& sortie) const {
+    sortie << "pos : " << position << " ; \"v\" : " << vitesse << " ; \"m\" : " << masse; 
+    return sortie;
+        }
+    std::ostream& operator<<(std::ostream& sortie, Particule const& part) { 
     return part.affiche(sortie);
-}
-std::ostream& Particule::affiche(ostream& const sortie) const {
-    sortie << "pos : ";
-    for(auto const& element : position) {
-        sortie << element << " ";
-    }
-    sortie << " ; " ;
-    sortie << "v : "  ;
-
-    for (auto const& element : vitesse) {
-        sortie << element << " ";
-    }
-    sortie << " ; m : " << masse ;
-    }
-
-
-// getteurs avec Vecteur3d:: pour extérioriser les méthodes
-
-array<double,3> Particule::get_Position() const {
-    return position;
-}
-double Particule::get_Vitesse(unsigned int pos) const{
-   return  vitesse[pos];
-}
+        }
