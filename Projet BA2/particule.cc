@@ -6,7 +6,7 @@ using namespace std;
 
 
 // ======================================================================================================================================
-    // Guetters
+    // Getters
     Vecteur3D Particule::getPosition() const { return position; }
     Vecteur3D Particule::getVitesse() const { return vitesse; }
     double Particule::getMasse() const  { return masse; }
@@ -21,9 +21,11 @@ using namespace std;
 // ======================================================================================================================================
  //surcharge affichage
     std :: ostream& Particule::affiche(std::ostream& sortie) const {
-    sortie << "pos : " << position << " ; \"v\" : " << vitesse << " ; \"m\" : " << masse; 
+     cout << "pos : ";  
+    position.affiche(sortie);
+    cout << " ; \"v\" : ";
+    vitesse.affiche(sortie); 
+    cout << " ; \"m\" : " << masse; 
     return sortie;
-        }
-    std::ostream& operator<<(std::ostream& sortie, Particule const& part) { 
-    return part.affiche(sortie);
-        }
+        }   
+    std::ostream& operator<<(std::ostream& sortie, Particule const& part) {  return part.affiche(sortie); }

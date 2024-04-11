@@ -16,7 +16,7 @@ class Particule {
         Particule(const Vecteur3D& pos, const Vecteur3D& vit, double m) : position(pos), vitesse(vit), masse(m) {}
         Particule(const Particule& autre) : position(autre.position), vitesse(autre.vitesse), masse(autre.masse) {}
 // ======================================================================================================================================
-    // Guetters
+    // Getters
         Vecteur3D getPosition() const;
         Vecteur3D getVitesse() const ;
         double getMasse() const;

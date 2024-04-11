@@ -54,3 +54,4 @@ public :
     Vecteur3D operator*(double scalaire, Vecteur3D const& autre);
     Vecteur3D operator*(Vecteur3D const& autre, double scalaire);
     double operator*(Vecteur3D  un,Vecteur3D const& autre) ;
+    
