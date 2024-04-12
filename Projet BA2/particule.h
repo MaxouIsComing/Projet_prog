@@ -6,7 +6,7 @@
 #include "Vecteur3D.h"
 
 class Particule {
-    private:
+    protected:
         Vecteur3D position;
         Vecteur3D vitesse;
         double masse;
@@ -34,3 +34,25 @@ class Particule {
     //surcharge d'opérateur externe 
     std::ostream& operator<<(std::ostream& sortie, Particule const& part);
 
+class Neon : public Particule {
+    protected:
+    Vecteur3D pos;
+    Vecteur3D vit;
+    Vecteur3D m;
+    public:
+    Neon (Vecteur3D pos, Vecteur3D vit, Vecteur3D m)
+    : Particule (Vecteur3D position, Vecteur3D vitesse, double masse){}
+    //pk ce constructeur marche pas ?
+};
+
+class Argon : public Particule {
+    protected:
+    Vecteur3D pos;
+    Vecteur3D vit;
+    Vecteur3D m;
+    public:
+    Argon (Vecteur3D pos, Vecteur3D vit, Vecteur3D m)
+    : Particule (Vecteur3D position, Vecteur3D vitesse, double masse){}
+    //pk ce constructeur marche pas ?
+
+};
