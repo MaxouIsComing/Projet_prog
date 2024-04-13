@@ -35,14 +35,15 @@ class Particule {
     std::ostream& operator<<(std::ostream& sortie, Particule const& part);
 
 class Neon : public Particule {
-    protected:
+    private:
     Vecteur3D pos;
     Vecteur3D vit;
     Vecteur3D m;
     public:
-    Neon (Vecteur3D pos, Vecteur3D vit, Vecteur3D m)
-    : Particule (Vecteur3D position, Vecteur3D vitesse, double masse){}
-    //pk ce constructeur marche pas ?
+    Neon() : pos(),vit(),m(0.0) {}
+    Neon (Vecteur3D pos, Vecteur3D vit, double m) : Particule (pos, vit,m){}
+    Neon (const Neon& autre) : pos(autre.pos), vit(autre.vit), m(autre.m) {}
+    
 };
 
 class Argon : public Particule {
@@ -51,8 +52,10 @@ class Argon : public Particule {
     Vecteur3D vit;
     Vecteur3D m;
     public:
-    Argon (Vecteur3D pos, Vecteur3D vit, Vecteur3D m)
-    : Particule (Vecteur3D position, Vecteur3D vitesse, double masse){}
-    //pk ce constructeur marche pas ?
+    //constructeur par défaut, initialisation, copie
+    Argon() : pos(),vit(),m(0.0) {}
+    Argon (Vecteur3D pos, Vecteur3D vit, double m) : Particule (pos, vit,m){}
+    Argon (const Argon& autre) : pos(autre.pos), vit(autre.vit), m(autre.m) {}
+    
 
 };
