@@ -2,6 +2,9 @@
 #include <vector>
 #pragma once
 #include "particule.h"
+#include "Enceinte.h"
+#include "Systeme.h"
+
 
 class SupportADessin{
     public:
