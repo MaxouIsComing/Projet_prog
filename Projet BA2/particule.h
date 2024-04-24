@@ -51,8 +51,8 @@ class Argon : public Particule {
     Vecteur3D vit;
     Vecteur3D m;
     public:
-    Argon (Vecteur3D pos, Vecteur3D vit, Vecteur3D m)
-    : Particule (Vecteur3D position, Vecteur3D vitesse, double masse){}
-    //pk ce constructeur marche pas ?
+    Argon (Vecteur3D pos, Vecteur3D vit, double m)
+    : Particule (pos,vit,m){}
+    
 
 };
