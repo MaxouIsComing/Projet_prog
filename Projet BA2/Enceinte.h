@@ -7,9 +7,13 @@
 class Enceinte {
 
     private:
-//constructeur?
-double Hauteur = 20;
-double Profondeur = 20;
-double Largeur = 20;
 
+double Hauteur;
+double Profondeur;
+double Largeur;
+
+    public :
+
+Enceinte (double H = 20.0, double P=20.0, double L=20.0)
+: Hauteur(H), Profondeur(P), Largeur(L) {}
 };

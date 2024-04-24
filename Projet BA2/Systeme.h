@@ -7,15 +7,16 @@
 class Systeme{
     private:
     std::vector<Particule*> collection;
-    double h;
-    double p;
-    double l;
-    public:
-    Systeme (std::vector<Particule*> collection={}) {Enceinte e;} // constr. par défaut , à quoi sert l'enceinte?
+    Enceinte E;
 
-    Systeme (std::vector<Particule*> collection={}, double Hauteur, double Profondeur, double Largeur)
-    : h(Hauteur), p(Profondeur), l(Largeur)
-    {} // comment initialiser l'enceinte?
+
+    public:
+    Systeme (std::vector<Particule*> c={}, Enceinte e) 
+        :  collection(c)     {} // constr. par défaut , à quoi sert l'enceinte?
+
+    Systeme (std::vector<Particule*> c={}, double Hauteur, double Profondeur, double Largeur, Enceinte e)
+    : collection(c), e(Hauteur,Profondeur,Largeur)
+    {}
 
     //surcharge affichage interne 
     std::ostream& affiche(std::ostream& output) const;
@@ -29,9 +30,6 @@ class Systeme{
     }
     Systeme(Systeme const&) = delete; // on supprime le choix de mettre des constr. de copie
     Systeme operator=(Systeme const&) = delete; // on supprime le choix d'affecter systeme
-
- 
-    
 
 };
 

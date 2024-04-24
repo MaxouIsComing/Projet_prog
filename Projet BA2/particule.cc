@@ -21,7 +21,7 @@ using namespace std;
 // ======================================================================================================================================
  //surcharge affichage
     std::ostream& Particule::affiche(std::ostream& sortie) const {
-     sortie << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << std::endl; 
+     sortie << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
      return sortie;
     }   
 
