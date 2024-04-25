@@ -8,6 +8,7 @@ using namespace std;
 
 // ======================================================================================================================================
   std::ostream& Systeme::affiche(std::ostream& output) const { 
+    cout << "Le système est composé de " << collection.size() << "particules" << endl;
         for(auto const& p : collection) {
             p->affiche(output);
         }
@@ -17,7 +18,6 @@ using namespace std;
         if(p!=nullptr) {collection.push_back(ParticulePtr(p)); }
     }
 // ======================================================================================================================================
-    void Systeme:: vider_particules(Particule* const& p){ collection.clear(); }
+    void Systeme:: vider_particules(Particule* const& p){collection.clear();}
 // ======================================================================================================================================
-    std::ostream& operator<<(std::ostream& output, Systeme const& sys)
- {return sys.affiche(output);}
+    std::ostream& operator<<(std::ostream& output, Systeme const& sys) {return sys.affiche(output);}
