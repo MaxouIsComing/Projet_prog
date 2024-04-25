@@ -3,6 +3,7 @@
 #include <cmath>
 #include <array>
 #include "Vecteur3D.h"
+
 using namespace std;
 //23
 //setteur pour les coordonnées

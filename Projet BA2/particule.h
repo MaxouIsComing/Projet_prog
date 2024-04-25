@@ -53,6 +53,5 @@ class Argon : public Particule {
     public:
     Argon (Vecteur3D pos, Vecteur3D vit, double m)
     : Particule (pos,vit,m){}
-    
 
 };

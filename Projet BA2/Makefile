@@ -15,6 +15,6 @@ particule.o: particule.cc particule.h Vecteur3D.h
 
 testparticule.o : testparticule.cc particule.h Vecteur3D.h
 
-testparticule : testparticule.o particule.o
+testparticule : testparticule.o particule.o Vecteur3D.o
 
 
