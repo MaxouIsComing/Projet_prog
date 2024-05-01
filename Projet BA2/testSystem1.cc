@@ -13,10 +13,9 @@ int main() {
 Systeme systeme;
 
  // Création d'instances de particules
-Particule* helium = new Particule({1, 1, 1}, {0, 0, 0}, 4.002602);
-Particule* neon = new Neon({1, 18.5, 1}, {0, 0.2, 0}, 20.1797);
-Particule* argon = new Argon({1, 1, 3.1}, {0, 0, -0.5}, 39.948);
-
+Particule* helium = new Helium({1, 1, 1}, {0, 0, 0}, 4.002602);
+Neon* neon = new Neon ({1, 18.5, 1}, {0, 0.2, 0}, 20.1797);
+Argon* argon = new Argon({1, 1, 3.1}, {0, 0, -0.5}, 39.948);
 
  // Ajout des particules au système
 

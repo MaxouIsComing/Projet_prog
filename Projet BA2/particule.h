@@ -28,30 +28,37 @@ class Particule {
         void setMasse(double m);
 // ======================================================================================================================================
    //surcharge d'opérateur interne
-    std::ostream& affiche(std::ostream& sortie) const;
+   virtual std::ostream& affiche(std::ostream& sortie) const;
 };
 // ======================================================================================================================================
     //surcharge d'opérateur externe 
     std::ostream& operator<<(std::ostream& sortie, Particule const& part);
 
 class Neon : public Particule {
-    private:
-    Vecteur3D pos;
-    Vecteur3D vit;
-    Vecteur3D m;
     public:
     Neon (Vecteur3D pos, Vecteur3D vit, double m)
     : Particule(pos, vit, m)  {}
- 
+    
+    std::ostream& affiche(std::ostream& sortie)const;
 };
+std::ostream& operator<<(std::ostream& sortie, Neon const& part);
+
+
 
 class Argon : public Particule {
-    protected:
-    Vecteur3D pos;
-    Vecteur3D vit;
-    Vecteur3D m;
     public:
     Argon (Vecteur3D pos, Vecteur3D vit, double m)
     : Particule (pos,vit,m){}
 
+     std::ostream& affiche(std::ostream& sortie) const;
 };
+ std::ostream& operator<<(std::ostream& sortie, Argon const& part);
+
+ class Helium : public Particule {
+    public:
+    Helium (Vecteur3D pos, Vecteur3D vit, double m)
+    : Particule (pos,vit,m){}
+
+     std::ostream& affiche(std::ostream& sortie) const;
+};
+ std::ostream& operator<<(std::ostream& sortie, Helium const& part);

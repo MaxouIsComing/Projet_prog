@@ -8,7 +8,7 @@ using namespace std;
 
 // ======================================================================================================================================
   std::ostream& Systeme::affiche(std::ostream& output) const { 
-    cout << "Le système est composé de " << collection.size() << "particules" << endl;
+    cout << "Le système est composé de " << collection.size() << " particules " << endl;
         for(auto const& p : collection) {
             p->affiche(output);
         }

@@ -20,12 +20,34 @@ using namespace std;
 
 // ======================================================================================================================================
  //surcharge affichage
-    std::ostream& Particule::affiche(std::ostream& sortie) const {
-     sortie << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+   std::ostream& Particule:: affiche(std::ostream& sortie) const {
+     sortie << "Particule " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     return sortie;
+    }   
+    std::ostream& Argon::affiche(std::ostream& sortie) const {
+     sortie << "particule  Argon : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     return sortie;
+    }   
+     std::ostream& Neon::affiche(std::ostream& sortie) const {
+     sortie << "particule  Neon :" << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     return sortie;
+    }   
+     std::ostream& Helium::affiche(std::ostream& sortie) const {
+     sortie << "particule  Helium :" << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
      return sortie;
     }   
 
-
     std::ostream& operator<<(std::ostream& sortie, Particule const& part) 
             { return part.affiche(sortie); }
+
+    std::ostream& operator<<(std::ostream& sortie, Argon const& part) 
+            { return part.affiche(sortie); }
+
+    std::ostream& operator<<(std::ostream& sortie, Neon const& part) 
+            { return part.affiche(sortie); }
+
+    std::ostream& operator<<(std::ostream& sortie, Helium const& part) 
+            { return part.affiche(sortie); }
+
+        
 
