@@ -7,8 +7,8 @@ using namespace std;
 
 // ======================================================================================================================================
     // Getters
-    Vecteur3D Particule::getPosition() const { return position; }
-    Vecteur3D Particule::getVitesse() const { return vitesse; }
+    double Particule::getPosition(int pos) const { return position.get_coord(pos); }
+    double Particule::getVitesse(int pos) const { return vitesse.get_coord(pos); }
     double Particule::getMasse() const  { return masse; }
 
 
@@ -33,7 +33,7 @@ using namespace std;
      return sortie;
     }   
      std::ostream& Helium::affiche(std::ostream& sortie) const {
-     sortie << "particule  Helium :" << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     sortie << "particule  Helium : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
      return sortie;
     }   
 
