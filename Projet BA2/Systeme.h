@@ -30,7 +30,30 @@ class Systeme {
     void vider_particules(Particule* const& p);
     Systeme(Systeme const&) = delete; 
     Systeme operator=(Systeme const&) = delete; 
+// ======================================================================================================================================
+ // methode pour l'evolution du systeme
+
+void evolue(double dt) {
     
+
+}
+
+    
+
+
+};
+
+class GenerateurAleatoire {
+         public:
+    GenerateurAleatoire(unsigned int graine = std::random_device()() ) 
+    : generateur(graine){}
+
+    double uniforme(double min, double max) 
+    { return distribution_uniforme(generateur, std::uniform_real_distribution<double>::param_type{min});}
+        private:
+    std::default_random_engine generateur ; 
+    std::uniform_real_distribution<double> distribution_uniforme ;
+
 };
 // ======================================================================================================================================
 //surcharge affichage externe 

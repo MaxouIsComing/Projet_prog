@@ -15,7 +15,7 @@ using namespace std;
     }
 // ======================================================================================================================================
     void Systeme:: ajouter_particule(Particule* const& p){
-        if(p!=nullptr) {collection.push_back(ParticulePtr(p)); }
+        if(p!=nullptr) {collection.push_back(unique_ptr<Particule>(p)); }
     }
 // ======================================================================================================================================
     void Systeme:: vider_particules(Particule* const& p){collection.clear();}

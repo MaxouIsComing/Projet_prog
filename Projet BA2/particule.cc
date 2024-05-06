@@ -10,12 +10,12 @@ using namespace std;
     double Particule::getPosition(int pos) const { return position.get_coord(pos); }
     double Particule::getVitesse(int pos) const { return vitesse.get_coord(pos); }
     double Particule::getMasse() const  { return masse; }
-
+        Vecteur3D Particule::getVitesse() const {return vitesse;}
 
 // ======================================================================================================================================
     // Setters
     void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
-    void Particule::setVitesse(const Vecteur3D& vit) { vitesse = vit; }
+    void Particule::setVitesse( Vecteur3D& vit) { vitesse = vit; }
     void Particule::setMasse(double m) { masse = m; }
 
 // ======================================================================================================================================
