@@ -10,6 +10,7 @@ class Systeme {
     private:
     std::vector<ParticulePtr> collection;
     Enceinte E;
+    GenerateurAleatoire tirage;
 
 // ======================================================================================================================================
     //constructeur par défaut/ initialisation
@@ -32,14 +33,11 @@ class Systeme {
     Systeme operator=(Systeme const&) = delete; 
 // ======================================================================================================================================
  // methode pour l'evolution du systeme
-
-void evolue(double dt) {
-    
-
-}
-
-    
-
+    void BounceWall(const Enceinte& e,  Particule* p);
+    virtual void Collision(double dt);
+    void VitesseApresChoc( Particule& p1,  Particule& p2, double dt);
+    Vecteur3D TirageDeVo (const Particule& p1, Vecteur3D Vg);
+    void evolue(double dt);
 
 };
 

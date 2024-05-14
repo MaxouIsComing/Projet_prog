@@ -7,20 +7,40 @@ using namespace std;
 
 // ======================================================================================================================================
     // Getters
-    double Particule::getPosition(int pos) const { return position.get_coord(pos); }
-    double Particule::getVitesse(int pos) const { return vitesse.get_coord(pos); }
-    double Particule::getMasse() const  { return masse; }
+        double Particule::getPosition(int pos) const { return position.get_coord(pos); }
+        double Particule::getVitesse(int pos) const { return vitesse.get_coord(pos); }
+        double Particule::getMasse() const  { return masse; }
         Vecteur3D Particule::getVitesse() const {return vitesse;}
 
 // ======================================================================================================================================
     // Setters
-    void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
-    void Particule::setVitesse( Vecteur3D& vit) { vitesse = vit; }
-    void Particule::setMasse(double m) { masse = m; }
+         void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
+        void Particule::setVitesse( Vecteur3D& vit) { vitesse = vit; }
+        void Particule::setMasse(double m) { masse = m; }
+// ======================================================================================================================================
+    //methodes d'affichage
 
+         void Particule::evolue(double dt) {
+                double x;
+                double y;
+                double z;
+
+                x = dt*getVitesse(0);
+                y = dt*getVitesse(1);
+                z = dt*getVitesse(2); 
+                setPosition({x,y,z});
+    }
+        bool Particule::Rencontre (const Particule& p1) {
+    double EPSILON = 1;
+    double distance = sqrt( pow(p1.getPosition(0)- getPosition(0), 2) +
+                            pow(p1.getPosition(1)- getPosition(1), 2) +
+                            pow(p1.getPosition(2)- getPosition(2), 2));
+
+    return distance <= EPSILON;
+}
 // ======================================================================================================================================
  //surcharge affichage
-   std::ostream& Particule:: affiche(std::ostream& sortie) const {
+   std::ostream& Particule::affiche(std::ostream& sortie) const {
      sortie << "Particule " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
      return sortie;
     }   
