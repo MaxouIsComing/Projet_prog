@@ -109,17 +109,17 @@ Vecteur3D Vecteur3D::operator^(Vecteur3D autre)  {
 Vecteur3D Vecteur3D::operator~()  {
     Vecteur3D unitaire;
     unitaire.coord = coord;
-    double norme_vect = norme(unitaire);
+    double norme_vect = unitaire.norme();
     unitaire *= (1/norme_vect);
     return unitaire ;
 }
 // ==================================================================================================================================
 // norme euclidienne et son carré 
 
-double Vecteur3D:: norme2(Vecteur3D autre) const {
-    double norme2(0.0);
-        for (size_t i(0); i < 3 ; ++i) {norme2 += autre.coord[i]*autre.coord[i];}
+double Vecteur3D:: norme2() const {
+        double norme2(0);
+        for (size_t i(0); i < 3 ; ++i) {norme2 += coord[i]*coord[i];}
     return norme2;
     }
    
-double Vecteur3D::norme (Vecteur3D autre) {return sqrt(norme2(autre));}
+double Vecteur3D::norme () {return sqrt(norme2());}

@@ -1,16 +1,17 @@
 #pragma once
 #include <iostream>
-#include "particule.h"
 #include "Vecteur3D.h"
 #include "Enceinte.h"
+#include"GenerateurAleatoire.h"
 
-typedef std::unique_ptr<Particule> ParticulePtr; //plus lisible
+class Particule;
 
 class Systeme {
     private:
-    std::vector<ParticulePtr> collection;
+    std::vector<std::unique_ptr<Particule>> collection;
     Enceinte E;
-    GenerateurAleatoire tirage;
+    GenerateurAleatoire tirage=123456;
+
 
 // ======================================================================================================================================
     //constructeur par défaut/ initialisation
@@ -27,7 +28,7 @@ class Systeme {
 
 // ======================================================================================================================================
 //ajout,suppression de particule
-    void ajouter_particule(Particule* const& p);
+    void ajouter_particule(Particule*  p);
     void vider_particules(Particule* const& p);
     Systeme(Systeme const&) = delete; 
     Systeme operator=(Systeme const&) = delete; 
@@ -35,24 +36,12 @@ class Systeme {
  // methode pour l'evolution du systeme
     void BounceWall(const Enceinte& e,  Particule* p);
     virtual void Collision(double dt);
-    void VitesseApresChoc( Particule& p1,  Particule& p2, double dt);
+    void VitesseApresChoc( Particule& p1,  Particule& p2);
     Vecteur3D TirageDeVo (const Particule& p1, Vecteur3D Vg);
+    int indice( Particule& p) const ;
     void evolue(double dt);
-
 };
 
-class GenerateurAleatoire {
-         public:
-    GenerateurAleatoire(unsigned int graine = std::random_device()() ) 
-    : generateur(graine){}
-
-    double uniforme(double min, double max) 
-    { return distribution_uniforme(generateur, std::uniform_real_distribution<double>::param_type{min});}
-        private:
-    std::default_random_engine generateur ; 
-    std::uniform_real_distribution<double> distribution_uniforme ;
-
-};
 // ======================================================================================================================================
 //surcharge affichage externe 
 std::ostream& operator<<(std::ostream& output, Systeme const& sys);

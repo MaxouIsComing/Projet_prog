@@ -2,6 +2,7 @@
 #include <vector>
 #include "particule.h"
 #include "Vecteur3D.h"
+#include <cmath>
 using namespace std;
 
 
@@ -11,63 +12,47 @@ using namespace std;
         double Particule::getVitesse(int pos) const { return vitesse.get_coord(pos); }
         double Particule::getMasse() const  { return masse; }
         Vecteur3D Particule::getVitesse() const {return vitesse;}
+        Vecteur3D Particule::getPosition() const {return position;}
 
 // ======================================================================================================================================
     // Setters
-         void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
-        void Particule::setVitesse( Vecteur3D& vit) { vitesse = vit; }
+        void Particule::setPosition(const Vecteur3D& pos) { position = pos; }
+        void Particule::setVitesse(Vecteur3D& vit) { vitesse = vit; }
         void Particule::setMasse(double m) { masse = m; }
+        void Particule::setVitesse(int pos, double new_vit) { vitesse.set_coord(pos,new_vit);}
+        void Particule::setPosition(int pos, double new_pos) { position.set_coord(pos,new_pos);}
+
+
+         bool Particule::operator==(const Particule& other) const {
+        return (position == other.position) && (vitesse == other.vitesse) && (masse == other.masse);
+    }
 // ======================================================================================================================================
-    //methodes d'affichage
+    //methodes evolue
 
          void Particule::evolue(double dt) {
-                double x;
-                double y;
-                double z;
-
-                x = dt*getVitesse(0);
-                y = dt*getVitesse(1);
-                z = dt*getVitesse(2); 
-                setPosition({x,y,z});
+                Vecteur3D deplacement = vitesse*dt;
+                position += deplacement;
     }
         bool Particule::Rencontre (const Particule& p1) {
-    double EPSILON = 1;
-    double distance = sqrt( pow(p1.getPosition(0)- getPosition(0), 2) +
-                            pow(p1.getPosition(1)- getPosition(1), 2) +
-                            pow(p1.getPosition(2)- getPosition(2), 2));
+        Vecteur3D cg = position - p1.position;
+        double distance =  cg.norme();
 
-    return distance <= EPSILON;
+    return distance < EPSILON;
 }
 // ======================================================================================================================================
  //surcharge affichage
    std::ostream& Particule::affiche(std::ostream& sortie) const {
-     sortie << "Particule " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     sortie << "position : " << position << ", vitesse : " << vitesse  << endl; 
      return sortie;
     }   
-    std::ostream& Argon::affiche(std::ostream& sortie) const {
-     sortie << "particule  Argon : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
-     return sortie;
-    }   
-     std::ostream& Neon::affiche(std::ostream& sortie) const {
-     sortie << "particule  Neon :" << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
-     return sortie;
-    }   
-     std::ostream& Helium::affiche(std::ostream& sortie) const {
-     sortie << "particule  Helium : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
-     return sortie;
-    }   
-
     std::ostream& operator<<(std::ostream& sortie, Particule const& part) 
             { return part.affiche(sortie); }
 
-    std::ostream& operator<<(std::ostream& sortie, Argon const& part) 
-            { return part.affiche(sortie); }
+    
 
-    std::ostream& operator<<(std::ostream& sortie, Neon const& part) 
-            { return part.affiche(sortie); }
+ 
 
-    std::ostream& operator<<(std::ostream& sortie, Helium const& part) 
-            { return part.affiche(sortie); }
+    
 
         
 

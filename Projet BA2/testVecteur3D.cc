@@ -33,6 +33,9 @@ cout << " vecteur 2," << endl << "et est ";
 cout << " vecteur 3." << endl;
 
 //test produit scalaire, produit vectoriel
+double t = vect1.norme();
+double t2 = vect1.norme2();
+cout << t << " " << t2 << endl;
 
 Vecteur3D vect5;
 double resultat;
