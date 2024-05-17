@@ -138,7 +138,27 @@ void Systeme::evolue(double dt) {
     }
    Collision(dt);
 }
+// ======================================================================================================================================
+void Systeme::InitialiseSysteme() {
 
+    for (int i(0); i < collection.size(); ++i) {
+        //Initialisation des coordonnées de manière uniforme 
+            double x = tirage.uniforme(0.0, E.getLargeur());
+            double y = tirage.uniforme(0.0, E.getProfondeur());
+            double z = tirage.uniforme(0.0, E.getHauteur());
+            Vecteur3D position(x, y, z);
+        // Initialisation de la vitesse selon la loi de Maxwell
+            double masse = collection[i]->getMasse();
+            double constante_specifique = 1000 * R / masse;
+            double vx = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
+            double vy = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
+            double vz = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
+            Vecteur3D vitesse(vx, vy, vz);
+        //remise à jour de la vitesse et position initiale de la particule
+        collection[i]->SetVitesse(vitesse);
+        collection[i]->SetPosition(position);
+    }
+}
 // ======================================================================================================================================
   std::ostream& Systeme::affiche(std::ostream& output) const { 
         for(auto const& p : collection) {

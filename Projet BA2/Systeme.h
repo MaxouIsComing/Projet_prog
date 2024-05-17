@@ -11,7 +11,8 @@ class Systeme {
     std::vector<std::unique_ptr<Particule>> collection;
     Enceinte E;
     GenerateurAleatoire tirage=123456;
-
+    const double R = 8.314472;
+    const double temperature = 273.5;
 
 // ======================================================================================================================================
     //constructeur par défaut/ initialisation
@@ -40,8 +41,24 @@ class Systeme {
     Vecteur3D TirageDeVo (const Particule& p1, Vecteur3D Vg);
     int indice( Particule& p) const ;
     void evolue(double dt);
+    void InitialiseSysteme ();
 };
 
 // ======================================================================================================================================
 //surcharge affichage externe 
 std::ostream& operator<<(std::ostream& output, Systeme const& sys);
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
