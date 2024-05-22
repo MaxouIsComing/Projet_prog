@@ -7,9 +7,9 @@ using namespace std;
 int main () {
 //24
 // un vecteur en 3D :
-Vecteur3D vect1(1.0, 2.0, -0.1);
+Vecteur3D vect1(-2.0, -2.0, -2.0);
 // un autre vecteur en 3D 
-Vecteur3D vect2(2.6, 3.5, 4.1);
+Vecteur3D vect2(6.0, 6.0, 6.0);
 Vecteur3D vect3(vect1); // copie de V1
 Vecteur3D vect4; //vecteur nul
 
@@ -31,11 +31,16 @@ cout << " vecteur 2," << endl << "et est ";
        cout << "égal au";
    }
 cout << " vecteur 3." << endl;
-
+Vecteur3D bougie = vect2-vect1;
 //test produit scalaire, produit vectoriel
 double t = vect1.norme();
 double t2 = vect1.norme2();
 cout << t << " " << t2 << endl;
+
+cout << "Bougie" ;
+cout << bougie << endl;
+cout << "Bougie norme " << endl;
+cout << bougie.norme() << endl;
 
 Vecteur3D vect5;
 double resultat;
@@ -48,6 +53,10 @@ cout << "produit vectoriel de Vecteur 1 et Vecteur 2 : " << vect5 <<endl;
 
 Vecteur3D vect6 (2.0,1.0,-4.0);
 Vecteur3D vect7 (1,1,1);
+
+Vecteur3D test = vect7-vect6;
+cout << "Le vecteur test vaut : ";
+cout << test << endl;
 
 double scalaire = -2.0;
 

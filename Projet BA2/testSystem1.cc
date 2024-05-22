@@ -26,6 +26,7 @@ Argon* argon = new Argon({1, 1, 3.1}, {0, 0, -0.5}, 39.948);
     systeme.ajouter_particule(neon);
     systeme.ajouter_particule(argon);
 
+cout << "Le systeme est composé de  3 particules " << endl;
 cout << systeme << endl;
 
 cout << "Lancement de la simulation" << endl;
@@ -36,10 +37,8 @@ double dt = 1;
 
 while (i<8) {
     
-    cout << i << endl;
     systeme.evolue(dt);
     cout << systeme << endl;
-    
     cout << "============-------"<<endl;
     ++i;
 

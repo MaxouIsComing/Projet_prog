@@ -13,6 +13,8 @@ class Systeme {
     GenerateurAleatoire tirage=123456;
     const double R = 8.314472;
     const double temperature = 273.5;
+    std::vector<int> collisionIndex1;
+    std::vector<int> collisionIndex2;
 
 // ======================================================================================================================================
     //constructeur par défaut/ initialisation
@@ -42,6 +44,7 @@ class Systeme {
     int indice( Particule& p) const ;
     void evolue(double dt);
     void InitialiseSysteme ();
+    void affiche_collision (Particule& p1, Particule& p2, int index);
 };
 
 // ======================================================================================================================================

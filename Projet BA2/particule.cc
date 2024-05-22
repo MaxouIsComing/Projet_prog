@@ -29,20 +29,19 @@ using namespace std;
 // ======================================================================================================================================
     //methodes evolue
 
-         void Particule::evolue(double dt) {
-                Vecteur3D deplacement = vitesse*dt;
-                position += deplacement;
+     void Particule::evolue(double dt) {
+            Vecteur3D deplacement = vitesse*dt;
+            position = position + deplacement;
     }
-        bool Particule::Rencontre (const Particule& p1) {
+    bool Particule::Rencontre (const Particule& p1) {
         Vecteur3D cg = position - p1.position;
         double distance =  cg.norme();
-
     return distance < EPSILON;
 }
 // ======================================================================================================================================
  //surcharge affichage
    std::ostream& Particule::affiche(std::ostream& sortie) const {
-     sortie << "position : " << position << ", vitesse : " << vitesse  << endl; 
+     sortie << "pos : " << position << ", v : " << vitesse  << endl; 
      return sortie;
     }   
     std::ostream& operator<<(std::ostream& sortie, Particule const& part) 

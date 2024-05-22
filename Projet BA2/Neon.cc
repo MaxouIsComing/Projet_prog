@@ -11,6 +11,6 @@ using namespace std;
 
 
 std::ostream& Neon::affiche(std::ostream& sortie) const {
-     sortie << "particule  Neon :" << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     sortie << "particule  Neon :" << " pos : " << position << ", v : " << vitesse << ", m : " << masse << endl; 
      return sortie;
     }   

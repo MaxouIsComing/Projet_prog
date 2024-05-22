@@ -13,7 +13,7 @@ class Particule {
         Vecteur3D position;
         Vecteur3D vitesse;
         double masse;
-        static constexpr int EPSILON = 1;
+        static constexpr double EPSILON = 1;
         
     public:
  // ======================================================================================================================================
@@ -23,21 +23,21 @@ class Particule {
         Particule(const Particule& autre) : position(autre.position), vitesse(autre.vitesse), masse(autre.masse) {}
 // ======================================================================================================================================
     // Getters
-        double getPosition(int pos) const;
-        double getVitesse(int pos) const ;
+        double getPosition(int pos) const; //surcharge qui permet d'avoir plus de flexibilité
+        double getVitesse(int pos) const ; //surcharge qui permet d'avoir plus de flexibilité
         double getMasse() const;
-        Vecteur3D getVitesse()const;
-        Vecteur3D getPosition() const;
+        Vecteur3D getVitesse()const; //surcharge qui permet d'avoir plus de flexibilité
+        Vecteur3D getPosition() const; //surcharge qui permet d'avoir plus de flexibilité
 // ======================================================================================================================================
     // Setters
-        void setPosition(const Vecteur3D& pos);
-        void setVitesse( Vecteur3D& vit);
+        void setPosition(const Vecteur3D& pos); //surcharge qui permet d'avoir plus de flexibilité
+        void setVitesse( Vecteur3D& vit); //surcharge qui permet d'avoir plus de flexibilité
         void setMasse(double m);
-        void setVitesse(int pos, double new_vit);
-        void setPosition(int pos, double new_pos);
+        void setVitesse(int pos, double new_vit); //surcharge qui permet d'avoir plus de flexibilité
+        void setPosition(int pos, double new_pos); //surcharge qui permet d'avoir plus de flexibilité
 // ======================================================================================================================================
     //destructeur
-     virtual ~Particule() = default;
+        virtual ~Particule() = default; // destructeur pour eviter des problèmes avec les pointeurs notamment une memoire alloué à un pointeur qui n'existe plus
 
 // ======================================================================================================================================
    //surcharge d'opérateur interne

@@ -11,6 +11,6 @@ std::ostream& operator<<(std::ostream& sortie, Argon const& part)
 
 
   std::ostream& Argon::affiche(std::ostream& sortie) const {
-     sortie << "particule  Argon : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     sortie << "particule  Argon : " << "pos : " << position << ", v : " << vitesse << ", m : " << masse << endl; 
      return sortie;
     }   

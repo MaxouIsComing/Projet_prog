@@ -6,7 +6,7 @@
 using namespace std;
 
      std::ostream& Helium::affiche(std::ostream& sortie) const {
-     sortie << "particule  Helium : " << "position : " << position << ", vitesse : " << vitesse << ", masse : " << masse << endl; 
+     sortie << "particule  Helium : " << "pos : " << position << ", v : " << vitesse << ", m : " << masse << endl; 
      return sortie;
     }   
 
