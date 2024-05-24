@@ -12,7 +12,7 @@ class Systeme {
     Enceinte E;
     GenerateurAleatoire tirage=123456;
     const double R = 8.314472;
-    const double temperature = 273.5;
+    const double temperature = 293.15;
     std::vector<int> collisionIndex1;
     std::vector<int> collisionIndex2;
 
@@ -31,20 +31,26 @@ class Systeme {
 
 // ======================================================================================================================================
 //ajout,suppression de particule
-    void ajouter_particule(Particule*  p);
+    void ajouter_particule(Particule*  p, int nb);
     void vider_particules(Particule* const& p);
     Systeme(Systeme const&) = delete; 
     Systeme operator=(Systeme const&) = delete; 
 // ======================================================================================================================================
  // methode pour l'evolution du systeme
-    void BounceWall(const Enceinte& e,  Particule* p);
+    void BounceWall(Particule* p);
     virtual void Collision(double dt);
+    bool collisionRecente(int i, int j) const;
     void VitesseApresChoc( Particule& p1,  Particule& p2);
     Vecteur3D TirageDeVo (const Particule& p1, Vecteur3D Vg);
     int indice( Particule& p) const ;
     void evolue(double dt);
-    void InitialiseSysteme ();
+    void InitialiseSysteme (int nb_helium, int nb_neon, int nb_argon);
+    void ajouter_particules_helium(int nb);
+    void ajouter_particules_neon(int nb);
+    void ajouter_particules_argon(int nb);
     void affiche_collision (Particule& p1, Particule& p2, int index);
+    void GererCollision(Particule* p, int axis, double min, double max, int faceMin, int faceMax);
+    int getTaille() const; 
 };
 
 // ======================================================================================================================================

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 #include <vector>
 #include "Systeme.h"
 #include"particule.h"
@@ -22,14 +21,15 @@ Argon* argon = new Argon({1, 1, 3.1}, {0, 0, -0.5}, 39.948);
 
  // Ajout des particules au système
 
-    systeme.ajouter_particule(helium);
-    systeme.ajouter_particule(neon);
-    systeme.ajouter_particule(argon);
+systeme.ajouter_particule(helium,1);
+systeme.ajouter_particule(neon,1);
+systeme.ajouter_particule(argon,1);
 
-cout << "Le systeme est composé de  3 particules " << endl;
+cout << "Le systeme est composé de " << systeme.getTaille()<<" particules " << endl;
+
 cout << systeme << endl;
 
-cout << "Lancement de la simulation" << endl;
+cout << "Lancement de la simulation : " << endl;
 cout << "============-------"<<endl;
 
 int i(0);

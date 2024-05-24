@@ -3,61 +3,48 @@
 #include "particule.h"
 #include "Vecteur3D.h"
 #include "Systeme.h"
+#include "Argon.h"
+#include "Neon.h"
+#include "Helium.h"
 #include"GenerateurAleatoire.h"
 
 using namespace std;
 // ======================================================================================================================================
- // methode de la fonction evolue
-void Systeme::BounceWall(const Enceinte& e,  Particule* p) {
+//fonction pour gérer les collisions avec les parois
+void Systeme::BounceWall(Particule* p) { 
 
-        double x_min = 0.0;
-        double x_max = e.getLargeur();
-        double y_min = 0.0;
-        double y_max = e.getProfondeur();
-        double z_min = 0.0;
-        double z_max = e.getHauteur();
-        int particle_face;
+        const double x_min = 0.0;
+        const double x_max = E.getLargeur();
+        const double y_min = 0.0;
+        const double y_max = E.getProfondeur();
+        const double z_min = 0.0;
+        const double z_max = E.getHauteur();
+    // Gestion des collisions avec les parois
+        GererCollision(p, 0, x_min, x_max, 3, 4); // Axe x
+        GererCollision(p, 1, y_min, y_max, 2, 1); // Axe y
+        GererCollision(p, 2, z_min, z_max, 6, 5); // Axe z
+}
+                  
+//fonction auxiliaire pour eviter la duplication de code
+void Systeme::GererCollision(Particule* p, int axe, double min, double max, int faceMin, int faceMax) {
+    double position = p->getPosition(axe);
+    if (position <= min || position >= max) {
+        p->setVitesse(axe, -p->getVitesse(axe));
         int particule_index = indice(*p);
-        // Vérifier si la particule a atteint ou dépassé les limites de l'enceinte sur chaque axe
-        if (p->getPosition(0) <= x_min || p->getPosition(0) >= x_max) {
-           p->setVitesse(0 ,-p->getVitesse(0));
-           p->setPosition(0 ,-p->getPosition(0));
-            cout << "La particule " << particule_index << " rebondit sur la face ";
-            if (p->getPosition(0) <= x_min) {
-    
-                     particle_face = 1;
-            }  else {
-                     particle_face = 2;
-                    }
-            cout << particle_face << endl;
+        cout << "La particule " << particule_index << " rebondit sur la face ";
+        if (position <= min) {
+            p->setPosition(axe, -position);
+            cout << faceMin;
+        } else {
+            p->setPosition(axe, 2 * max - position);
+            cout << faceMax;
         }
-        if (p->getPosition(1) <= y_min || p->getPosition(1) >= y_max) {
-            p->setVitesse(1 ,-p->getVitesse(1));
-            p->setPosition(1 ,-p->getPosition(1));
-            cout << "La particule " << particule_index << " rebondit sur la face ";
-             if (p->getPosition(1) <= y_min) {
-                     particle_face = 3;
-            }  else {
-                     particle_face = 4;
-                    }
-            cout << particle_face << endl;
-        }
-        
-        if (p->getPosition(2) <= z_min || p->getPosition(2) >= z_max) {
-            p->setVitesse(2 ,-p->getVitesse(2));
-            p->setPosition(2 ,-p->getPosition(2));
-            cout << "La particule " << particule_index << " rebondit sur la face ";
-             if (p->getPosition(2) <= z_min) {
-    
-                     particle_face = 5;
-            }  else {
-                     particle_face = 6;
-                    }
-            cout << particle_face << endl;
-        }
-        
+        std::cout << std::endl;
     }
+}
+
 // ======================================================================================================================================
+ //fonctions qui gère les collisions entre les particules
  void Systeme::Collision(double dt) {
 
     vector<int> nouvellesCollisions1;
@@ -68,20 +55,9 @@ void Systeme::BounceWall(const Enceinte& e,  Particule* p) {
             Particule& p1 = *collection[i];
             for (int j=i+1; j<collection.size();++j) { // pas besoin de faire de double incrementation car si 1 n'a pas rencontré 2 alors 2 ne va pas rencontrer 1 d'ou j = i+1
                 Particule& p2= *collection[j];
-                if ((p1.Rencontre(p2)))  {
-                // Vérifier si cette paire est déjà dans les collisions récentes
-                bool collisionRecente = false; 
-                if ((!collisionIndex1.empty()) and (!collisionIndex2.empty())) {
-                for (size_t k = 0; k < collisionIndex1.size(); ++k) {
-                    if ((collisionIndex1[k] == i and collisionIndex2[k] == j) or
-                        (collisionIndex1[k] == j and collisionIndex2[k] == i)) {
-                        collisionRecente = true;
-                    }}
-                }
-                if (!collisionRecente) {
+                if ((p1.Rencontre(p2))and (!collisionRecente(i,j)))  {  // Vérifier si cette paire est déjà dans les collisions récentes
                     Touche.push_back(j);
-                }
-            }
+                }   
         }
             
             if (!Touche.empty()) { 
@@ -98,6 +74,34 @@ void Systeme::BounceWall(const Enceinte& e,  Particule* p) {
         } 
     
  }
+ //fonction qui empêche deux particules qui viennent de rentrer en collision de se retoucher juste après si dt est trop court
+ bool Systeme::collisionRecente(int i, int j) const {
+    if ((!collisionIndex1.empty()) and (!collisionIndex2.empty())){
+        for (size_t k = 0; k < collisionIndex1.size(); ++k) {
+            if ((collisionIndex1[k] == i and collisionIndex2[k] == j) ||
+                (collisionIndex1[k] == j and collisionIndex2[k] == i)) {
+                    return true;
+            }
+        }   
+    }
+     return false;
+}
+//fonction auxiliaire pour l'affichage
+void Systeme::affiche_collision (Particule& p1, Particule& p2, int index) {
+        int pos = index+1;
+        cout << "La particule " << pos  << " entre en collision avec une autre particule" << endl;
+        cout << "Avant le choc :" << endl;
+        cout << "part. " << pos << " :: " ;
+        p2.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
+        cout << "autre :: " ;
+        p1.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
+        VitesseApresChoc(p2,p1);
+        cout << "Après le choc :" << endl; 
+        cout << "part. " << pos << " :: "; 
+        p2.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
+        cout << "autre :: " ;
+        p1.Particule::affiche(cout) << endl;  // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.  
+}
 //======================================================================================================================================
 void Systeme::VitesseApresChoc( Particule& p1,  Particule& p2) {
     double m1 = p1.getMasse();
@@ -109,8 +113,7 @@ void Systeme::VitesseApresChoc( Particule& p1,  Particule& p2) {
     Vecteur3D V1b = Vg-(m1/m2)*Vo;
     p1.setVitesse(V1a);
     p2.setVitesse(V1b);
-
-}
+    }
 // ======================================================================================================================================
 Vecteur3D Systeme::TirageDeVo (const Particule& p1, Vecteur3D Vg) {
 
@@ -135,54 +138,65 @@ int Systeme::indice( Particule& p) const {
             return i + 1;
         }
     }
-    return -1; // Retourne -1 si la particule n'est pas trouvée (aucun indice valide), utile au debugage
+    return -1; // Retourne -1 si la particule n'est pas trouvée , utile au debugage
 }
 // ======================================================================================================================================
 void Systeme::evolue(double dt) {
     
     
     for (auto const& p : collection) {
-        p->evolue(dt);
-        BounceWall(E,p.get());
+        p->evolue(dt);  
+        BounceWall(p.get());         
     }
     Collision(dt);
 }
 // ======================================================================================================================================
-void Systeme::InitialiseSysteme() {
+void Systeme::InitialiseSysteme(int nb_helium, int nb_neon, int nb_argon) {
+    ajouter_particules_helium(nb_helium);
+    ajouter_particules_neon(nb_neon);
+    ajouter_particules_argon(nb_argon);
+}
 
-    for (int i(0); i < collection.size(); ++i) {
-        //Initialisation des coordonnées de manière uniforme 
-            double x = tirage.uniforme(0.0, E.getLargeur());
-            double y = tirage.uniforme(0.0, E.getProfondeur());
-            double z = tirage.uniforme(0.0, E.getHauteur());
-            Vecteur3D position(x, y, z);
-        // Initialisation de la vitesse selon la loi de Maxwell
-            double masse = collection[i]->getMasse(); // on part du principe que l'on connait la masse et que l'on sait combien on possède de particules 
-            double constante_specifique = 1000 * R / masse;
-            double vx = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
-            double vy = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
-            double vz = tirage.gaussienne(0.0, sqrt(constante_specifique * temperature));
-            Vecteur3D vitesse(vx, vy, vz);
-        //remise à jour de la vitesse et position initiale de la particule
-            collection[i]->setVitesse(vitesse);
-            collection[i]->setVitesse(position);
+void Systeme::ajouter_particules_helium(int nb) {
+    for (int i = 0; i < nb; ++i) {
+        Vecteur3D position = Vecteur3D(tirage.uniforme(0.0, E.getLargeur()), 
+                                       tirage.uniforme(0.0, E.getProfondeur()), 
+                                       tirage.uniforme(0.0, E.getHauteur()));
+        double masse = 4.0026;
+        double vx = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vy = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vz = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        Vecteur3D vitesse(vx, vy, vz);
+        collection.push_back(std::unique_ptr<Particule>(new Helium(position, vitesse, masse)));
     }
 }
-// ======================================================================================================================================
-void Systeme::affiche_collision (Particule& p1, Particule& p2, int index) {
-        int pos = index+1;
-        cout << "La particule " << pos  << " entre en collision avec une autre particule" << endl;
-        cout << "Avant le choc :" << endl;
-        cout << "part. " << pos << " :: " ;
-        p2.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
-        cout << "autre :: " ;
-        p1.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
-        VitesseApresChoc(p2,p1);
-        cout << "Après le choc :" << endl; 
-        cout << "part. " << pos << " :: "; 
-        p2.Particule::affiche(cout) << endl; // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.
-        cout << "autre :: " ;
-        p1.Particule::affiche(cout) << endl;  // utilisation de l'op de resolution de portée pour afficher la fonction affiche de particule et non de la sous classe.  
+
+void Systeme::ajouter_particules_neon(int nb) {
+    for (int i = 0; i < nb; ++i) {
+        Vecteur3D position = Vecteur3D(tirage.uniforme(0.0, E.getLargeur()), 
+                                       tirage.uniforme(0.0, E.getProfondeur()), 
+                                       tirage.uniforme(0.0, E.getHauteur()));
+        double masse = 20.1797;
+        double vx = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vy = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vz = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        Vecteur3D vitesse(vx, vy, vz);
+        collection.push_back(std::unique_ptr<Particule>(new Neon(position, vitesse, masse)));
+    }
+}
+
+void Systeme::ajouter_particules_argon(int nb) {
+    for (int i = 0; i < nb; ++i) {
+        Vecteur3D position = Vecteur3D(tirage.uniforme(0.0, E.getLargeur()), 
+                                       tirage.uniforme(0.0, E.getProfondeur()), 
+                                       tirage.uniforme(0.0, E.getHauteur()));
+        double masse = 39.948;
+        double vx = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vy = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        double vz = tirage.gaussienne(0.0, sqrt(1000 * R / masse * temperature)/1000);
+        Vecteur3D vitesse(vx, vy, vz);
+        collection.push_back(std::unique_ptr<Particule>(new Argon(position, vitesse, masse)));
+    }
 }
 // ======================================================================================================================================
   std::ostream& Systeme::affiche(std::ostream& output) const { 
@@ -192,12 +206,15 @@ void Systeme::affiche_collision (Particule& p1, Particule& p2, int index) {
     return output;
     }
 // ======================================================================================================================================
-    void Systeme:: ajouter_particule(Particule* p){
-        if(p!=nullptr) {collection.push_back(std::unique_ptr<Particule> (p)); }
+    void Systeme:: ajouter_particule(Particule* p, int nb){
+        if(p!=nullptr) {
+            for (int i(0); i < nb ; ++i) {
+            collection.push_back(std::unique_ptr<Particule> (p)); }
+         }
     }
 // ======================================================================================================================================
     void Systeme:: vider_particules(Particule* const& p){collection.clear();}
-
-
 // ======================================================================================================================================
     std::ostream& operator<<(std::ostream& output, Systeme const& sys) {return sys.affiche(output);}
+// ======================================================================================================================================
+    int Systeme::getTaille() const{ return collection.size();}

@@ -12,7 +12,7 @@ private :
 public :
 
 //constructeur de copie, par defaut, initialisation
-    Vecteur3D (double x = 0., double y = 0.,double z = 0.) {
+    Vecteur3D (double x=0.0, double y=0.0 ,double z=0.0 ) {
         coord[0] = x;
         coord[1] = y;
         coord[2] = z;

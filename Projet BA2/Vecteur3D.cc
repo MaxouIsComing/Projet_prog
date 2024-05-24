@@ -3,9 +3,8 @@
 #include <cmath>
 #include <array>
 #include "Vecteur3D.h"
-
 using namespace std;
-//23
+
 //setteur pour les coordonnées
 void Vecteur3D::set_coord(int pos, double new_coord) {
     coord[pos] = new_coord; 

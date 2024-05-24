@@ -3,7 +3,7 @@ CC  = $(CXX)
 
 CXXFLAGS = -std=c++11  -pedantic -Wall         
 
-all: testSystem1 testparticule testVecteur3D
+all: testSystem1 testparticule testVecteur3D testSystem2
 
 Vecteur3D.o: Vecteur3D.cc Vecteur3D.h
 
@@ -19,9 +19,9 @@ testparticule : testparticule.o particule.o Vecteur3D.o
 
 GenerateurAleatoire.o :GenerateurAleatoire.cc GenerateurAleatoire.h
 
-systeme.o : systeme.cc systeme.h Vecteur3D.h particule.h GenerateurAleatoire.h
+systeme.o : systeme.cc systeme.h Vecteur3D.h particule.h GenerateurAleatoire.h Helium.h Argon.h Neon.h
 
-helium.o : Helium.cc Helium.h particule.h Vecteur3D.h
+Helium.o : Helium.cc Helium.h particule.h Vecteur3D.h
 
 Argon.o : Argon.cc Argon.h particule.h Vecteur3D.h
 
@@ -31,4 +31,7 @@ testSystem1 :  testSystem1.o systeme.o Vecteur3D.o particule.o GenerateurAleatoi
 
 testSystem1.o : testSystem1.cc Vecteur3D.h particule.h GenerateurAleatoire.h Helium.h Argon.h Neon.h
 
+testSystem2 : testSystem2.o systeme.o Vecteur3D.o particule.o GenerateurAleatoire.o Neon.o Argon.o Helium.o
+
+testSystem2.o : testSystem2.cc Vecteur3D.h particule.h GenerateurAleatoire.h Helium.h Argon.h Neon.h
 
