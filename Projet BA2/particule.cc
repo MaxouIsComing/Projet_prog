@@ -36,7 +36,7 @@ using namespace std;
     bool Particule::Rencontre (const Particule& p1) {
         Vecteur3D cg = position - p1.position;
         double distance =  cg.norme();
-    return distance < EPSILON;
+        return distance < EPSILON;
 }
 // ======================================================================================================================================
  //surcharge affichage

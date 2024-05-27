@@ -21,11 +21,11 @@ Argon* argon = new Argon({1, 1, 3.1}, {0, 0, -0.5}, 39.948);
 
  // Ajout des particules au système
 
-systeme.ajouter_particule(helium,1);
-systeme.ajouter_particule(neon,1);
-systeme.ajouter_particule(argon,1);
+systeme.ajouter_particule(helium); //sans une initialisation du systeme aléatoire
+systeme.ajouter_particule(neon);
+systeme.ajouter_particule(argon);
 
-cout << "Le systeme est composé de " << systeme.getTaille()<<" particules " << endl;
+cout << "Le systeme est composé de " << systeme.getTaille() <<" particules " << endl;
 
 cout << systeme << endl;
 

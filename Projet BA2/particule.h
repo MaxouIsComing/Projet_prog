@@ -44,13 +44,13 @@ class Particule {
         virtual std::ostream& affiche(std::ostream& sortie) const;
 // ======================================================================================================================================
  // methode pour l'evolution du systeme
-    virtual void evolue(double dt);
-    bool Rencontre (const Particule& p1);
-    bool operator==(const Particule& other) const;
+        virtual void evolue(double dt);
+        bool Rencontre (const Particule& p1);
+        bool operator==(const Particule& other) const;
    };
 // ======================================================================================================================================
     //surcharge d'opérateur externe 
-    std::ostream& operator<<(std::ostream& sortie, Particule const& part);
+        std::ostream& operator<<(std::ostream& sortie, Particule const& part);
 
 
 

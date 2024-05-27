@@ -31,7 +31,7 @@ class Systeme {
 
 // ======================================================================================================================================
 //ajout,suppression de particule
-    void ajouter_particule(Particule*  p, int nb);
+    void ajouter_particule(Particule*  p);
     void vider_particules(Particule* const& p);
     Systeme(Systeme const&) = delete; 
     Systeme operator=(Systeme const&) = delete; 

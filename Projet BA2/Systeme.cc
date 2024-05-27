@@ -151,7 +151,7 @@ void Systeme::evolue(double dt) {
     Collision(dt);
 }
 // ======================================================================================================================================
-void Systeme::InitialiseSysteme(int nb_helium, int nb_neon, int nb_argon) {
+void Systeme::InitialiseSysteme(int nb_helium, int nb_neon, int nb_argon) { //fonction qui initialise le système
     ajouter_particules_helium(nb_helium);
     ajouter_particules_neon(nb_neon);
     ajouter_particules_argon(nb_argon);
@@ -206,12 +206,9 @@ void Systeme::ajouter_particules_argon(int nb) {
     return output;
     }
 // ======================================================================================================================================
-    void Systeme:: ajouter_particule(Particule* p, int nb){
-        if(p!=nullptr) {
-            for (int i(0); i < nb ; ++i) {
-            collection.push_back(std::unique_ptr<Particule> (p)); }
-         }
-    }
+    void Systeme:: ajouter_particule(Particule* p){ 
+        if(p!=nullptr) {    collection.push_back(std::unique_ptr<Particule> (p)); }
+     }
 // ======================================================================================================================================
     void Systeme:: vider_particules(Particule* const& p){collection.clear();}
 // ======================================================================================================================================
