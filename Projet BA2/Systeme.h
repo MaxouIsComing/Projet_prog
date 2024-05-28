@@ -3,6 +3,7 @@
 #include "Vecteur3D.h"
 #include "Enceinte.h"
 #include"GenerateurAleatoire.h"
+#include <memory>
 
 class Particule;
 
@@ -10,7 +11,7 @@ class Systeme {
     private:
     std::vector<std::unique_ptr<Particule>> collection;
     Enceinte E;
-    GenerateurAleatoire tirage=123456;
+    GenerateurAleatoire tirage;
     const double R = 8.314472;
     const double temperature = 293.15;
     std::vector<int> collisionIndex1;
