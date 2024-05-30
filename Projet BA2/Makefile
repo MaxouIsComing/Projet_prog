@@ -21,11 +21,11 @@ GenerateurAleatoire.o :GenerateurAleatoire.cc GenerateurAleatoire.h
 
 Systeme.o : Systeme.cc Systeme.h Vecteur3D.h particule.h GenerateurAleatoire.h Helium.h Argon.h Neon.h
 
-Helium.o : Helium.cc Helium.h particule.h Vecteur3D.h
+Helium.o : Helium.cc Helium.h particule.h 
 
-Argon.o : Argon.cc Argon.h particule.h Vecteur3D.h
+Argon.o : Argon.cc Argon.h particule.h 
 
-Neon.o : Neon.cc Neon.h particule.h Vecteur3D.h
+Neon.o : Neon.cc Neon.h particule.h 
 
 testSystem1 :  testSystem1.o Systeme.o Vecteur3D.o particule.o GenerateurAleatoire.o Neon.o Argon.o Helium.o
 

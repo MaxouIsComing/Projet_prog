@@ -3,7 +3,6 @@
 #include <array>
 #include <vector>
 #include <cmath>
-#include "Vecteur3D.h"
 #include "particule.h"
 
 

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "particule.h"
-#include "Vecteur3D.h"
 #include "Neon.h"
 using namespace std;
 
